@@ -48,6 +48,108 @@ const MainFeature = () => {
       return;
     }
 
+<div className="flex items-start gap-3 sm:gap-4">
+        {/* Drag Handle */}
+        <div
+          {...attributes}
+          {...listeners}
+          className="drag-handle flex-shrink-0 p-1 mt-1"
+        >
+          <ApperIcon name="GripVertical" className="w-4 h-4" />
+        </div>
+
+        <motion.button
+          onClick={() => onToggleStatus(task.id)}
+          className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
+            task.status === 'completed'
+              ? 'bg-green-500 border-green-500 text-white'
+              : 'border-surface-300 hover:border-primary'
+          }`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {task.status === 'completed' && (
+            <ApperIcon name="Check" className="w-4 h-4" />
+          )}
+        </motion.button>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+            <div className="flex-1 min-w-0">
+              <h3 className={`text-base sm:text-lg font-semibold mb-1 ${
+                task.status === 'completed' 
+                  ? 'line-through text-surface-500 dark:text-surface-400' 
+                  : 'text-surface-900 dark:text-white'
+              }`}>
+                {task.title}
+              </h3>
+              {task.description && (
+                <p className="text-sm text-surface-600 dark:text-surface-400 mb-2 sm:mb-3">
+                  {task.description}
+                </p>
+              )}
+              
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium border priority-${task.priority}`}
+                >
+                  <ApperIcon name={getPriorityIcon(task.priority)} className="w-3 h-3" />
+                  {task.priority}
+                </span>
+
+                <span
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium border"
+                  style={{ 
+                    backgroundColor: `${category?.color}15`,
+                    borderColor: `${category?.color}30`,
+                    color: category?.color 
+                  }}
+                >
+                  <ApperIcon name="Tag" className="w-3 h-3" />
+                  {category?.name}
+                </span>
+
+                {task.dueDate && (
+                  <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium border ${
+                    isOverdue 
+                      ? 'bg-red-100 text-red-800 border-red-200' 
+                      : 'bg-blue-100 text-blue-800 border-blue-200'
+                  }`}>
+                    <ApperIcon name="Calendar" className="w-3 h-3" />
+                    {formatDueDate(task.dueDate)}
+                    {isOverdue && <ApperIcon name="AlertCircle" className="w-3 h-3 ml-1" />}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+              <motion.button
+                onClick={() => onEdit(task)}
+                className="p-2 rounded-lg text-surface-600 hover:text-primary hover:bg-primary/10 transition-all duration-200"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ApperIcon name="Edit3" className="w-4 h-4" />
+              </motion.button>
+              
+              <motion.button
+                onClick={() => onDelete(task.id)}
+                className="p-2 rounded-lg text-surface-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ApperIcon name="Trash2" className="w-4 h-4" />
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MainFeature = () => {
     const task = {
       id: Date.now().toString(),
       ...newTask,
