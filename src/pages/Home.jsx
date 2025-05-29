@@ -43,7 +43,7 @@ const Home = () => {
                 <ApperIcon name="CheckSquare" className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">TaskFlow</h1>
+                <h1 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Tasker</h1>
                 <p className="text-xs sm:text-sm text-surface-600 dark:text-surface-300 hidden sm:block">Efficient Task Management</p>
               </div>
             </motion.div>
