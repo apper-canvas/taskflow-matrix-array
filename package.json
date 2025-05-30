@@ -1,5 +1,5 @@
 {
-  "name": "taskflow",
+"name": "tasker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -21,9 +21,9 @@
     "@reduxjs/toolkit": "2.7.0",
 "@dnd-kit/core": "^6.1.0",
     "@dnd-kit/sortable": "^8.0.0",
-    "@dnd-kit/utilities": "^3.2.2"
+"@dnd-kit/utilities": "^3.2.2",
     "apexcharts": "^4.7.0",
-    "react-apexcharts": "^1.7.0"
+"react-apexcharts": "^1.7.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
